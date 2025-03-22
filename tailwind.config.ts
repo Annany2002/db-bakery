@@ -71,20 +71,12 @@ export default {
 			},
 			keyframes: {
 				'accordion-down': {
-					from: {
-						height: '0'
-					},
-					to: {
-						height: 'var(--radix-accordion-content-height)'
-					}
+					from: { height: '0' },
+					to: { height: 'var(--radix-accordion-content-height)' }
 				},
 				'accordion-up': {
-					from: {
-						height: 'var(--radix-accordion-content-height)'
-					},
-					to: {
-						height: '0'
-					}
+					from: { height: 'var(--radix-accordion-content-height)' },
+					to: { height: '0' }
 				},
 				'fade-in': {
 					'0%': { opacity: '0' },
@@ -101,10 +93,6 @@ export default {
 				'slide-down': {
 					'0%': { transform: 'translateY(-10px)', opacity: '0' },
 					'100%': { transform: 'translateY(0)', opacity: '1' }
-				},
-				'pulse-soft': {
-					'0%, 100%': { opacity: '1' },
-					'50%': { opacity: '0.8' }
 				}
 			},
 			animation: {
@@ -113,26 +101,17 @@ export default {
 				'fade-in': 'fade-in 0.3s ease-out',
 				'fade-out': 'fade-out 0.3s ease-out',
 				'slide-up': 'slide-up 0.4s ease-out',
-				'slide-down': 'slide-down 0.4s ease-out',
-				'pulse-soft': 'pulse-soft 2s infinite ease-in-out'
+				'slide-down': 'slide-down 0.4s ease-out'
 			},
 			fontFamily: {
-				sans: ['Inter', 'sans-serif'],
-				display: ['SF Pro Display', 'Inter', 'sans-serif']
+				sans: ['Inter', 'system-ui', 'sans-serif'],
+				display: ['DM Sans', 'Inter', 'system-ui', 'sans-serif']
 			},
 			boxShadow: {
 				'soft': '0 2px 10px rgba(0, 0, 0, 0.05)',
 				'medium': '0 4px 20px rgba(0, 0, 0, 0.08)',
 				'glass': '0 8px 32px rgba(0, 0, 0, 0.06)',
 				'inner-soft': 'inset 0 1px 3px rgba(0, 0, 0, 0.05)'
-			},
-			backgroundImage: {
-				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-				'glass': 'linear-gradient(to bottom right, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02))',
-				'card-gradient': 'linear-gradient(to bottom right, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05))'
-			},
-			backdropBlur: {
-				'xs': '2px'
 			}
 		}
 	},
