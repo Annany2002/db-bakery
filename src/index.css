@@ -48,42 +48,42 @@
   }
 
   .dark {
-    --background: 224 71% 4%;
-    --foreground: 213 31% 91%;
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
 
-    --card: 224 71% 4%;
-    --card-foreground: 213 31% 91%;
+    --card: 222 47% 10%;
+    --card-foreground: 210 40% 98%;
 
-    --popover: 224 71% 4%;
-    --popover-foreground: 213 31% 91%;
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
 
-    --primary: 217.2 91.2% 59.8%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 222 47% 11%;
 
-    --secondary: 222.2 47.4% 11.2%;
+    --secondary: 217 32% 17%;
     --secondary-foreground: 210 40% 98%;
 
-    --muted: 223 47% 11%;
-    --muted-foreground: 215.4 16.3% 56.9%;
+    --muted: 217 32% 17%;
+    --muted-foreground: 215 20% 65%;
 
-    --accent: 216 34% 17%;
+    --accent: 217 34% 17%;
     --accent-foreground: 210 40% 98%;
 
-    --destructive: 0 62.8% 30.6%;
+    --destructive: 0 62.8% 50.6%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 224.3 76.3% 48%;
+    --border: 217 32% 17.5%;
+    --input: 217 32% 17.5%;
+    --ring: 224 76% 48%;
     
-    --sidebar-background: 224 71% 4%;
-    --sidebar-foreground: 213 31% 91%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 216 34% 17%;
+    --sidebar-background: 222 47% 11%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 217 91% 60%;
+    --sidebar-primary-foreground: 222 47% 11%;
+    --sidebar-accent: 217 34% 17%;
     --sidebar-accent-foreground: 210 40% 98%;
-    --sidebar-border: 216 34% 17%;
-    --sidebar-ring: 224.3 76.3% 48%;
+    --sidebar-border: 217 34% 17%;
+    --sidebar-ring: 224 76% 48%;
   }
 }
 
@@ -102,11 +102,19 @@
   }
 
   .glass-card {
-    @apply bg-card border border-border/30 shadow-sm rounded-lg;
+    @apply bg-card border border-border/30 shadow-sm rounded-lg backdrop-blur-sm;
   }
   
   .glass-panel {
-    @apply bg-background/50 border border-border/40 shadow-sm rounded-lg;
+    @apply bg-background/50 border border-border/40 shadow-sm rounded-lg backdrop-blur-sm;
+  }
+
+  .dark .glass-card {
+    @apply bg-card/70 border-white/5;
+  }
+  
+  .dark .glass-panel {
+    @apply bg-background/70 border-white/5;
   }
 }
 

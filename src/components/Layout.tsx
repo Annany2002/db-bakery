@@ -3,6 +3,9 @@ import React from 'react';
 import Navbar from './Navbar';
 import Logo from './Logo';
 import { useAuth } from '../contexts/AuthContext';
+import { MoonIcon, SunIcon } from 'lucide-react';
+import { Button } from './ui/button';
+import { useTheme } from 'next-themes';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -11,6 +14,7 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children, showFooter = true }) => {
   const { isAuthenticated } = useAuth();
+  const { theme, setTheme } = useTheme();
 
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col">
@@ -26,6 +30,19 @@ const Layout: React.FC<LayoutProps> = ({ children, showFooter = true }) => {
               <span>© {new Date().getFullYear()} All rights reserved.</span>
             </div>
             <div className="flex items-center gap-4">
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+                className="rounded-full"
+                aria-label="Toggle dark mode"
+              >
+                {theme === 'dark' ? (
+                  <SunIcon className="h-[1.2rem] w-[1.2rem]" />
+                ) : (
+                  <MoonIcon className="h-[1.2rem] w-[1.2rem]" />
+                )}
+              </Button>
               <a href="#" className="hover:text-foreground transition-colors">Terms</a>
               <a href="#" className="hover:text-foreground transition-colors">Privacy</a>
               <a href="#" className="hover:text-foreground transition-colors">Documentation</a>
