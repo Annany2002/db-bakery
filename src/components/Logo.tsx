@@ -2,17 +2,20 @@
 import React from 'react';
 import { Database } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { motion } from 'framer-motion';
 
 interface LogoProps {
   size?: 'sm' | 'md' | 'lg';
   withText?: boolean;
   className?: string;
+  animated?: boolean;
 }
 
 const Logo: React.FC<LogoProps> = ({ 
   size = 'md', 
   withText = true,
-  className 
+  className,
+  animated = false
 }) => {
   // Size mappings for the logo container
   const sizeClasses = {
@@ -35,19 +38,64 @@ const Logo: React.FC<LogoProps> = ({
     lg: 'text-xl'
   };
 
+  const LogoIcon = () => (
+    <div className={cn(
+      sizeClasses[size],
+      "rounded-md bg-primary flex items-center justify-center relative overflow-hidden"
+    )}>
+      {animated ? (
+        <>
+          <motion.div 
+            className="absolute inset-0 bg-primary-foreground/10"
+            initial={{ y: '100%' }}
+            animate={{ y: '-100%' }}
+            transition={{ 
+              repeat: Infinity, 
+              duration: 1.5, 
+              ease: "linear",
+              repeatType: "loop"
+            }}
+          />
+          <Database className={cn(iconSizes[size], "text-white relative z-10")} />
+        </>
+      ) : (
+        <Database className={cn(iconSizes[size], "text-white")} />
+      )}
+    </div>
+  );
+
+  const LogoText = () => (
+    <span className={cn(textSizes[size], "font-medium")}>
+      DB Backup
+    </span>
+  );
+
+  if (animated) {
+    return (
+      <motion.div 
+        className={cn("flex items-center gap-2", className)}
+        initial={{ opacity: 0, y: -5 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4 }}
+      >
+        <LogoIcon />
+        {withText && (
+          <motion.div
+            initial={{ opacity: 0, x: -5 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.4, delay: 0.1 }}
+          >
+            <LogoText />
+          </motion.div>
+        )}
+      </motion.div>
+    );
+  }
+
   return (
     <div className={cn("flex items-center gap-2", className)}>
-      <div className={cn(
-        sizeClasses[size],
-        "rounded-md bg-primary flex items-center justify-center"
-      )}>
-        <Database className={cn(iconSizes[size], "text-white")} />
-      </div>
-      {withText && (
-        <span className={cn(textSizes[size], "font-medium")}>
-          DB Backup
-        </span>
-      )}
+      <LogoIcon />
+      {withText && <LogoText />}
     </div>
   );
 };
