@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Filter, RotateCcw, Search } from 'lucide-react';
@@ -11,7 +10,12 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 import { toast } from '@/hooks/use-toast';
 import { Label } from '@/components/ui/label';
-import { Backup, BackupStatus, DatabaseConnection, restoreBackup } from '../utils/backupUtils';
+import { 
+  Backup, 
+  BackupStatus, 
+  restoreBackup,
+  DatabaseConnection 
+} from '../utils/backupUtils';
 
 const mockDatabases: DatabaseConnection[] = [
   {
@@ -133,7 +137,6 @@ const Backups = () => {
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
 
   useEffect(() => {
-    // Simulate loading backups
     const timer = setTimeout(() => {
       const mockBackups = generateMockBackups();
       setBackups(mockBackups);
@@ -151,7 +154,6 @@ const Backups = () => {
   const applyFilters = () => {
     let filtered = [...backups];
     
-    // Apply search filter
     if (searchTerm) {
       const term = searchTerm.toLowerCase();
       filtered = filtered.filter(backup => 
@@ -159,12 +161,10 @@ const Backups = () => {
       );
     }
     
-    // Apply status filter
     if (statusFilter !== 'all') {
       filtered = filtered.filter(backup => backup.status === statusFilter);
     }
     
-    // Apply database filter
     if (databaseFilter !== 'all') {
       filtered = filtered.filter(backup => backup.connectionId === databaseFilter);
     }
@@ -245,7 +245,6 @@ const Backups = () => {
       description: `Downloading ${backup.name}...`
     });
     
-    // Simulate download delay
     setTimeout(() => {
       toast({
         title: "Download Complete",
@@ -354,7 +353,6 @@ const Backups = () => {
           </div>
         )}
 
-        {/* Delete Confirmation Modal */}
         <Dialog open={isDeleteModalOpen} onOpenChange={setIsDeleteModalOpen}>
           <DialogContent className="sm:max-w-md">
             <DialogHeader>
@@ -376,7 +374,6 @@ const Backups = () => {
           </DialogContent>
         </Dialog>
 
-        {/* Filter Modal */}
         <Dialog open={isFilterModalOpen} onOpenChange={setIsFilterModalOpen}>
           <DialogContent className="sm:max-w-md">
             <DialogHeader>
@@ -436,7 +433,6 @@ const Backups = () => {
           </DialogContent>
         </Dialog>
 
-        {/* Restore Modal */}
         {backupToRestore && (
           <RestoreModal 
             isOpen={isRestoreModalOpen}

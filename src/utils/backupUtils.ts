@@ -1,4 +1,3 @@
-
 import { DatabaseConnection, DatabaseType } from './databaseUtils';
 
 export type BackupType = 'full' | 'incremental' | 'differential';
@@ -174,3 +173,6 @@ export const restoreBackup = async (
     message: 'Backup restored successfully!'
   };
 };
+
+// Re-export DatabaseConnection from databaseUtils
+export type { DatabaseConnection };
