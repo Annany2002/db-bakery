@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Database, History, Settings, Menu, X, LogOut } from 'lucide-react';
+import { Shield, History, Settings, Menu, X, LogOut } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import {
@@ -13,6 +13,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import Logo from './Logo';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -36,8 +37,8 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: 'Dashboard', path: '/', icon: <Database className="w-5 h-5" /> },
-    { name: 'Connections', path: '/connect', icon: <Database className="w-5 h-5" /> },
+    { name: 'Dashboard', path: '/dashboard', icon: <Shield className="w-5 h-5" /> },
+    { name: 'Connections', path: '/connect', icon: <Shield className="w-5 h-5" /> },
     { name: 'Backups', path: '/backups', icon: <History className="w-5 h-5" /> },
     { name: 'Settings', path: '/settings', icon: <Settings className="w-5 h-5" /> },
   ];
@@ -64,12 +65,7 @@ const Navbar = () => {
             to="/" 
             className="flex items-center gap-2 font-medium"
           >
-            <div className="h-8 w-8 rounded-md bg-primary flex items-center justify-center">
-              <Database className="h-4 w-4 text-white" />
-            </div>
-            <span className="text-lg font-medium">
-              DB Backup
-            </span>
+            <Logo size="md" />
           </Link>
 
           {/* Desktop Navigation */}

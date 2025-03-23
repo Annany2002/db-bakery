@@ -27,7 +27,7 @@ const Layout: React.FC<LayoutProps> = ({ children, showFooter = true }) => {
           <div className="container flex flex-col md:flex-row justify-between items-center gap-4 px-4 text-sm text-muted-foreground">
             <div className="flex items-center gap-2">
               <Logo size="sm" />
-              <span>© {new Date().getFullYear()} All rights reserved.</span>
+              <span>© {new Date().getFullYear()} Guard. All rights reserved.</span>
             </div>
             <div className="flex items-center gap-4">
               <Button 

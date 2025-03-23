@@ -15,10 +15,15 @@
 }
 
 :root {
+  --primary-rgb: 124, 58, 237; /* Purple color */
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.dark {
+  --primary-rgb: 139, 92, 246; /* Lighter purple for dark mode */
 }
 
 .dark .dark-mode-transition,

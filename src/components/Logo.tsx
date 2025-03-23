@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Database } from 'lucide-react';
+import { Shield, ShieldCheck } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
 
@@ -56,17 +56,17 @@ const Logo: React.FC<LogoProps> = ({
               repeatType: "loop"
             }}
           />
-          <Database className={cn(iconSizes[size], "text-white relative z-10")} />
+          <ShieldCheck className={cn(iconSizes[size], "text-white relative z-10")} />
         </>
       ) : (
-        <Database className={cn(iconSizes[size], "text-white")} />
+        <Shield className={cn(iconSizes[size], "text-white")} />
       )}
     </div>
   );
 
   const LogoText = () => (
     <span className={cn(textSizes[size], "font-medium")}>
-      DB Backup
+      Guard
     </span>
   );
 
