@@ -1,35 +1,38 @@
 
 import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useLocation } from 'react-router-dom';
 import { Database } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
+import { useAuth } from '@/contexts/AuthContext';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
   const { toast } = useToast();
+  const { login } = useAuth();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // Get the redirect path from location state if it exists
+  const from = location.state?.from || '/dashboard';
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     
-    // Simulate authentication
-    setTimeout(() => {
-      setIsLoading(false);
-      // For demo purposes, we'll just do a simple validation
-      if (email && password) {
-        localStorage.setItem('user', JSON.stringify({ email }));
+    try {
+      const success = await login(email, password);
+      if (success) {
         toast({
           title: "Login successful",
-          description: "Welcome back to DB Backup!",
+          description: "Welcome back to Guard!",
         });
-        navigate('/');
+        navigate(from);
       } else {
         toast({
           variant: "destructive",
@@ -37,7 +40,15 @@ const Login = () => {
           description: "Please check your credentials and try again.",
         });
       }
-    }, 1000);
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Login error",
+        description: "An unexpected error occurred.",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -48,7 +59,7 @@ const Login = () => {
             <div className="h-10 w-10 rounded-md bg-primary flex items-center justify-center">
               <Database className="h-5 w-5 text-white" />
             </div>
-            <span className="text-xl font-medium">DB Backup</span>
+            <span className="text-xl font-medium">Guard</span>
           </Link>
         </div>
         
