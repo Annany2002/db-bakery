@@ -26,11 +26,11 @@ const AppWithProviders = () => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+      <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange={false}>
         <BrowserRouter>
           <AuthProvider>
             <App />
-            <Toaster position="top-right" />
+            <Toaster position="top-right" richColors closeButton />
           </AuthProvider>
         </BrowserRouter>
       </ThemeProvider>
